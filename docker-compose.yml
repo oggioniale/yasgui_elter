@@ -1,0 +1,11 @@
+services:
+  yasgui:
+    image: erikap/yasgui
+    container_name: yasgui-elter
+    environment:
+      DEFAULT_SPARQL_ENDPOINT: "http://fuseki1.get-it.it/elter"
+    ports:
+      - 82:80
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html
+      - ./config/config.js:/usr/share/nginx/html/config.js
