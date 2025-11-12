@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>YasGUI - eLTER Custom</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@triply/yasgui/build/yasgui.min.css"
+  />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      overflow: hidden;
+    }
+    #toolbar {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    #toolbar select {
+      padding: 4px 8px;
+      font-size: 14px;
+    }
+    #yasgui {
+      height: calc(100vh - 80px);
+      position: relative;
+    }
+    /* === Overlay documentation panel === */
+    #docs {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fafafa;
+      border-top: 1px solid #ddd;
+      padding: 20px;
+      box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.1);
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+      z-index: 100;
+      max-height: 40vh;
+      overflow-y: auto;
+    }
+    #docs.visible {
+      transform: translateY(0);
+    }
+    #toggleDocs {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 10px;
+      background: #e6e6e6;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 101;
+    }
+    #toggleDocs:hover {
+      background: #dcdcdc;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Toolbar  thmenu -->
+  <div id="toolbar">
+    <div>
+      <label for="querySelect"><strong>💡 Choose a query:</strong></label>
+      <select id="querySelect">
+        <option value="">Select...</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- YasGUI -->
+  <div id="yasgui"></div>
+
+  <!-- toggle e documentation -->
+  <button id="toggleDocs">📘 Show Documentation</button>
+
+  <div id="docs">
+    <h3>Documentation</h3>
+    <p>
+      This interface allows you to explore and query the
+      <strong>eLTER-RI Linked Data Graph</strong> via the SPARQL endpoint.
+    </p>
+    <ul>
+      <li><code>ef:EnvironmentalMonitoringFacility</code> — Sites registered in <a haref="http://deims.org/ target="_blank">DEIMS-SDR</a> and harmonized.</li>
+      <li><code>ef:EnvironmentalMonitoringNetwork</code> — National and European-level eLTER-RI networks.</li>
+      <li><code>sosa:Sensor</code> — Sensors, observations and monitoring data.</li>
+      <li><code>activity</code> - ... .</li>
+      <li>...</li>
+    </ul>
+    <p>
+      The SPARQL editor is YasGUI, for more information visit <a href="https://github.com/TriplyDB/Yasgui/wiki" target="_blank">YasGUI docs</a>.
+      This service is provides a SPARQL query interface for <a href="https://elter-ri.eu" target="_blank">eLTER-RI</a>
+    </p>
+    <p>
+      This work has been partially funded from the European Union's Horizon 2020 and Horizon Europe research and innovation programmes under the <a href="https://elter-ri.eu/elter-plus" target="_blank">H2020 eLTER-Plus Project</a> grant agreement Nr. 871128 and <a href="https://elter-ri.eu/elter-enrich" target="_blank">eLTER EnRich Project</a> grant agreement Nr. 101131751.
+    </p>
+  </div>
+
+  <!-- Script YasGUI e configurazione -->
+  <script src="https://cdn.jsdelivr.net/npm/@triply/yasgui/build/yasgui.min.js"></script>
+  <script>
+    window.DEFAULT_SPARQL_ENDPOINT = "{{DEFAULT_SPARQL_ENDPOINT}}";
+  </script>
+  <script src="config.js"></script>
+</body>
+</html>
